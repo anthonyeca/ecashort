@@ -2,12 +2,17 @@ import express from 'express'
 import connectDB from './config/db.js'
 import dotenv from 'dotenv'
 import cors from 'cors'
-
 dotenv.config({ path: './config/.env' })
+
 const app = express()
+const FRONTEND_URL = process.env.ORIGIN
 
 // Habilitar CORS
-app.use(cors())
+app.use(
+  cors({
+    origin: [FRONTEND_URL],
+  })
+)
 
 connectDB()
 
